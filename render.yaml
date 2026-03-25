@@ -15,8 +15,6 @@ services:
         fromDatabase:
           name: air_text_db
           property: connectionString
-      - key: RAILS_MASTER_KEY
-        sync: false
       - key: RAILS_ENV
         value: production
       - key: WEB_CONCURRENCY
