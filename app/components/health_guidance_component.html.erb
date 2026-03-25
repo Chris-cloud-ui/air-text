@@ -1,20 +1,22 @@
-
 <% @guidance_blocks.each do |group| %>
   <% if group[:group].present? %>
     <h3 class="guidance-group-name"><%= group[:group] %></h3>
   <% end %>
+
   <% group[:guidance].each do |guidance| %>
-    <div class="guidance-block <%= @classes.join %>">
-      <% if guidance[:icons].any? %>
+    <div class="guidance-block <%= @classes.join(' ') %>">
+
+      <% if guidance[:icons].present? %>
         <div class="guidance-icons mb-1">
           <% guidance[:icons].each do |icon| %>
             <%= helpers.render_svg "pictograms/#{icon}" %>
           <% end %>
         </div>
       <% end %>
+
       <div class="guidance-text">
         <p><%= guidance[:html].html_safe %></p>
       </div>
     </div>
-  <% end%>
+  <% end %>
 <% end %>
