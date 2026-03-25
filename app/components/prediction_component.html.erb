@@ -5,7 +5,7 @@
   </dl>
   <% if guidance_visible? %>
   <div class="guidance">
-    <%= render(HealthGuidanceComponent.new(css_name.to_sym, level_label.parameterize(separator: "_").to_sym, classes: ["mb-3"])) %>
+    <%= render(HealthGuidanceComponent.new(css_name.to_sym, (level_label || "low").parameterize(separator: "_").to_sym, classes: ["mb-3"])) %>
     <p><%= link_to "Learn more about the #{sentence_name} alert", health_advice_path, class: "a" %></p>
   </div>
   <% end %>
