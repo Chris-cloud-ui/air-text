@@ -23,6 +23,8 @@ class UvPredictionComponent < PredictionComponent
       "High"
     when 8..10
       "Very high"
+    else
+      "Low"
     end
   end
 end
