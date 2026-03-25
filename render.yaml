@@ -1,0 +1,23 @@
+databases:
+  - name: air_text_db
+    databaseName: air_text_production
+    plan: free
+
+services:
+  - type: web
+    name: air_text
+    runtime: ruby
+    plan: free
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec rails server -p $PORT"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: air_text_db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: RAILS_ENV
+        value: production
+      - key: WEB_CONCURRENCY
+        value: 2
