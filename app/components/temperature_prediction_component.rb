@@ -31,7 +31,7 @@ class TemperaturePredictionComponent < PredictionComponent
   end
 
   def level_label
-    if @value[:min] <= 12
+    if @value[:min] <= 2
       "Low temp"
     elsif @value[:max] >= 25
       "High temp"
