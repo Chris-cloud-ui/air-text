@@ -59,7 +59,7 @@ class CercForecastService
           date: Date.parse(forecast.fetch("forecast_date")),
 
           zone: {
-            id: zone.fetch("zone_id"),
+            id: Zone.find_by(cerc_id: zone.fetch("zone_id")).id
             name: zone.fetch("zone_name"),
             type: zone.fetch("zone_type")
           },
