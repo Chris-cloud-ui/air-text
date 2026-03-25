@@ -1,5 +1,3 @@
-require 'pp' # for pretty_inspect
-
 class CercForecastService
   class << self
     def latest_forecasts(zone = nil)
@@ -56,10 +54,9 @@ class CercForecastService
 
     def zone_forecasts(zone, obtained_at: Time.current)
       zone["forecasts"].map do |forecast|
-        Forecast.new({
+        f = Forecast.new({
           obtained_at: obtained_at,
           date: Date.parse(forecast.fetch("forecast_date")),
-          log("Full zone object:\n#{PP.pp(zone, '')}") # pretty print the whole object
           zone: {
             id: zone.fetch("zone_id"),
             name: zone.fetch("zone_name"),
@@ -83,11 +80,9 @@ class CercForecastService
             max: forecast.fetch("temp_max")
           }
         })
+        Rails.logger.info("Forecast object: #{f.inspect}") # logs the whole Forecast object
+        f
       end
-    end
-    def log(message)
-      @logs << message
-      Rails.logger.info(message)
     end
   end
 end
