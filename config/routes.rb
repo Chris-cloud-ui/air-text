@@ -17,6 +17,12 @@ Rails.application.routes.draw do
   get :privacy_policy, to: "pages#privacy_policy"
   get :terms_and_conditions, to: "pages#terms_and_conditions"
 
+  # 🔍 Add this debug route HERE
+  get "/debug_forecast" => proc {
+    data = CercForecastApiClient.latest_forecasts
+    [200, { "Content-Type" => "application/json" }, [data.to_json]]
+  }
+
   # If the CANONICAL_HOSTNAME env var is present, and the request doesn't come from that
   # hostname, redirect us to the canonical hostname with the path and query string present
   if ENV["CANONICAL_HOSTNAME"].present?
