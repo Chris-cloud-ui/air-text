@@ -2,6 +2,7 @@
 
 class PredictionComponent < ViewComponent::Base
   def initialize(value)
+    Rails.logger.info(value) 
     @value = value
   end
 
@@ -10,6 +11,7 @@ class PredictionComponent < ViewComponent::Base
   end
 
   def display_value
+    Rails.logger.info(value) 
     level_label
   end
 
