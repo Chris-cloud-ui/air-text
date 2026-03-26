@@ -2,7 +2,6 @@
 
 class PredictionComponent < ViewComponent::Base
   def initialize(value)
-    Rails.logger.info(value) 
     @value = value
   end
 
@@ -16,9 +15,5 @@ class PredictionComponent < ViewComponent::Base
 
   def guidance_visible?
     level_label != "Low"
-  end
-
-  def level
-    level_label.downcase.tr(" ", "_").to_sym
   end
 end
