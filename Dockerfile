@@ -132,9 +132,9 @@ RUN \
   shellcheck \
   chromium-driver \
   yarn
-
+ENV RAILS_ENV=development
 RUN bundle exec rails dartsass:build && yarn build
-
+ENV RAILS_ENV=production
 COPY eslint.config.mjs ${APP_HOME}/eslint.config.mjs
 COPY .prettierignore ${APP_HOME}/.prettierignore
 COPY .prettierrc ${APP_HOME}/.prettierrc
