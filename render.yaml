@@ -13,6 +13,6 @@ services:
       - key: SECRET_KEY
         sync: false
       - key: RAILS_ENV
-        value: development
+        value: production
       - key: WEB_CONCURRENCY
         value: 2
