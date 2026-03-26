@@ -54,9 +54,10 @@ class CercForecastService
 
     def zone_forecasts(zone, obtained_at: Time.current)
       zone["forecasts"].map do |forecast|
-        f = Forecast.new({
+        Forecast.new({
           obtained_at: obtained_at,
           date: Date.parse(forecast.fetch("forecast_date")),
+
           zone: {
             id: zone.fetch("zone_id"),
             name: zone.fetch("zone_name"),
@@ -80,8 +81,6 @@ class CercForecastService
             max: forecast.fetch("temp_max")
           }
         })
-        Rails.logger.info("Forecast object: #{f.inspect}") # logs the whole Forecast object
-        f
       end
     end
   end
