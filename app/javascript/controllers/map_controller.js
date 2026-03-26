@@ -86,6 +86,7 @@ export default class MapController extends Controller {
     // Ordered from bottom to top
     this.map.createPane("street-map");
     this.map.getPane("street-map").style.zIndex = 200;
+    this.map.getPane("street-map").style.opacity = 0.6;
     this.addStreetMapLayer();
 
     this.map.createPane("pollution");
