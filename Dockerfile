@@ -68,13 +68,13 @@ RUN mkdir -p tmp/pids tmp/cache tmp/sockets log
 ENV RAILS_ENV=development
 ENV NODE_ENV=development
 RUN bundle exec rails dartsass:build && yarn build
-
+# Precompile Rails assets
+RUN bundle exec rails assets:precompile
 # Switch to production for runtime
 ENV RAILS_ENV=production
 ENV NODE_ENV=production
 
-# Precompile Rails assets
-RUN bundle exec rails assets:precompile
+
 
 # Entrypoint
 COPY ./docker-entrypoint.sh /
