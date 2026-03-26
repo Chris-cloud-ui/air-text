@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -o errexit
 
-export RAILS_ENV=development
+export RAILS_ENV=production
 yarn install --check-files || true
 
 bundle install
