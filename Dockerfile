@@ -5,10 +5,9 @@ FROM ruby:3.4.9 AS base
 LABEL org.opencontainers.image.authors="contact@dxw.com"
 
 # Install Node.js
-ENV NODE_VERSION=24.14.0
-ENV NODE_MAJOR_VERSION=${NODE_VERSION%%.*}
-RUN curl -L https://deb.nodesource.com/setup_${NODE_MAJOR_VERSION}.x | bash -
-# RUN apt-get install -y nodejs=${NODE_VERSION}-1nodesource1
+
+ENV NODE_VERSION=24
+RUN curl -L https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -
 RUN apt-get install -y nodejs
 
 # Install Yarn
