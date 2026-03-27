@@ -198,7 +198,7 @@ export default class MapController extends Controller {
   addStreetMapLayer() {
     const streetMap = new MaptilerLayer({
       apiKey: this.settings.maptilerApiKey,
-      style: "base-v4-light",  
+      style: "positron",  
       pane: "street-map",
     });
     this.map.addLayer(streetMap);
