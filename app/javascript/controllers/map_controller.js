@@ -85,6 +85,7 @@ export default class MapController extends Controller {
 
     // Ordered from bottom to top
     this.map.createPane("street-map");
+    this.map.getPane("street-map").style.opacity = 1;
     this.map.getPane("street-map").style.zIndex = 420;
     this.addStreetMapLayer();
 
@@ -197,7 +198,7 @@ export default class MapController extends Controller {
   addStreetMapLayer() {
     const streetMap = new MaptilerLayer({
       apiKey: this.settings.maptilerApiKey,
-      style: "positron",  
+      style: "019c0507-d879-7c46-8d06-83ae78c649ea",  
       pane: "street-map",
     });
     this.map.addLayer(streetMap);
