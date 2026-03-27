@@ -8,7 +8,8 @@ LABEL org.opencontainers.image.authors="contact@dxw.com"
 ENV NODE_VERSION=24.14.0
 ENV NODE_MAJOR_VERSION=${NODE_VERSION%%.*}
 RUN curl -L https://deb.nodesource.com/setup_${NODE_MAJOR_VERSION}.x | bash -
-RUN apt-get install -y nodejs=${NODE_VERSION}-1nodesource1
+# RUN apt-get install -y nodejs=${NODE_VERSION}-1nodesource1
+RUN apt-get install -y nodejs
 
 # Install Yarn
 RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg
