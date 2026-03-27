@@ -226,8 +226,14 @@ export default class MapController extends Controller {
   }
 
   pollutionLayer(pollutant, date) {
+    var pollcj;
+    if (pollutant=="PM2_5") {
+      pollcj = "PM25";
+    } else {
+      pollcj = pollutant;
+    }
     return L.tileLayer.wms("https://airtext.info/geoserver/wms?", {
-      layers: `london:${pollutant}`,
+      layers: `london:${pollcj}`,
       time: date,
       format: "image/png",
       opacity: 1,
