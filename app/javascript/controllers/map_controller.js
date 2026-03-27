@@ -238,7 +238,7 @@ export default class MapController extends Controller {
       format: "image/png",
       opacity: 1,
       pane: "pollution",
-      styles: `daqi${pollutant}`,
+      styles: `daqi${pollcj}`,
     });
   }
 
