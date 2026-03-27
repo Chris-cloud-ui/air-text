@@ -3,7 +3,7 @@
 @use "leaflet/dist/leaflet";
 @use "@maptiler/geocoding-control/style"; /* Geocoding (search) control */
 @use "leaflet.locatecontrol/dist/L.Control.Locate"; /* Geolocation button */
-@use "leaflet.fullscreen/Control.FullScreen"; /* Fullscreen button */
+@use "leaflet.fullscreen/dist/Control.FullScreen"; /* Fullscreen button */
 @use "daqi-levels";
 @use "header";
 @use "air-quality-alert-banner";
