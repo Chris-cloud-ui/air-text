@@ -10,6 +10,6 @@
     <% end %>
   </div>
   <p>If the code does not arrive, please check your spam folder. You can also
-  <%= button_tag "resend the code", data: { "subscription-target": "resendVerificationButton", action: "subscription#resendVerification", medium: "email" }, type: :button, class: "a" %>.
+  <%= button_tag "resend the code", data: { "subscription-target": "resendVerificationButton", action: "subscription#resendVerification", mode: "email" }, type: :button, class: "a" %>.
   </p>
 <% end %>
