@@ -6,9 +6,14 @@ LABEL org.opencontainers.image.authors="contact@dxw.com"
 
 # Install Node.js
 
-ENV NODE_VERSION=24
-RUN curl -L https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -
-RUN apt-get install -y nodejs
+ENV NODE_VERSION=24.14.0
+
+# Install exact Node version from official tarball
+RUN curl -fsSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz \
+    | tar -xJ -C /usr/local --strip-components=1
+
+# Verify
+RUN node -v && npm -v
 
 # Install Yarn
 RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg
