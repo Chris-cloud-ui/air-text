@@ -100,7 +100,7 @@ class ForecastsController < ApplicationController
   end
 
   def pollutant
-    return params.fetch("pollutant", "Total") if %w[Total PM10 PM25 NO2 O3].include?(params.dig("pollutant"))
+    return params.fetch("pollutant", "Total") if %w[Total PM10 PM2_5 NO2 O3].include?(params.dig("pollutant"))
 
     "Total" # default to Total
   end
