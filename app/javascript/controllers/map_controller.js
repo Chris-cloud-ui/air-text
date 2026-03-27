@@ -235,6 +235,7 @@ export default class MapController extends Controller {
     return L.tileLayer.wms("https://airtext.info/geoserver/wms?", {
       layers: `london:${pollcj}`,
       time: date,
+      transparent: true,
       format: "image/png",
       opacity: 1,
       pane: "pollution",
