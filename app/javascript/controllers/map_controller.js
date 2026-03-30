@@ -213,7 +213,7 @@ export default class MapController extends Controller {
   addPlaceNamesLayer() {
     const placeNames = new MaptilerLayer({
       apiKey: this.settings.maptilerApiKey,
-      style: "1cc6214b-0f45-4e3d-a5bc-8e81b82cca7a",
+      style: "019d3e7f-6a90-7b8a-af98-1cb2753c5d79",
       pane: "place-names",
     });
     this.map.addLayer(placeNames);
