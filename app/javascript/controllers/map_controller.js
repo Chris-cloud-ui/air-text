@@ -86,18 +86,20 @@ export default class MapController extends Controller {
     // Ordered from bottom to top
     this.map.createPane("street-map");
     this.map.getPane("street-map").style.opacity = 1;
-    //this.map.getPane("street-map").style.zIndex = 420;
+    // this.map.getPane("street-map").style.zIndex = 420;
     this.addStreetMapLayer();
 
     this.map.createPane("pollution");
     this.map.getPane("pollution").style.opacity = 0.6;
-    //this.map.getPane("pollution").style.zIndex = 450;
+    // this.map.getPane("pollution").style.zIndex = 450;
     this.addPollutionLayer();
 
     this.map.createPane("place-names");
+    this.map.getPane("place-names").style.zIndex = 451;
     this.addPlaceNamesLayer();
 
     this.map.createPane("zones");
+    this.map.getPane("zones").style.zIndex = 452;
     this.addZonesLayer();
 
     this.map.on("zoomend moveend", () => {
