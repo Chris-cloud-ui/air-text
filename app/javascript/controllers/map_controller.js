@@ -200,7 +200,7 @@ export default class MapController extends Controller {
   addStreetMapLayer() {
     const streetMap = new MaptilerLayer({
       apiKey: this.settings.maptilerApiKey,
-      style: "019d3f4e-b252-7558-8c24-045dd2c802b8",  #  style: "019c0507-d879-7c46-8d06-83ae78c649ea",  
+      style: "019d3f4e-b252-7558-8c24-045dd2c802b8",  //  style: "019c0507-d879-7c46-8d06-83ae78c649ea",  
       pane: "street-map",
       maxZoom: 20,        
       maxNativeZoom: 20   
