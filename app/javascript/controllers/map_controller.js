@@ -200,6 +200,8 @@ export default class MapController extends Controller {
       apiKey: this.settings.maptilerApiKey,
       style: "019c0507-d879-7c46-8d06-83ae78c649ea",  
       pane: "street-map",
+      maxZoom: 20,        
+      maxNativeZoom: 20   
     });
     this.map.addLayer(streetMap);
     streetMap.getCanvas().removeAttribute("tabindex");
