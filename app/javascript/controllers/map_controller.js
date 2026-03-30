@@ -95,7 +95,7 @@ export default class MapController extends Controller {
     this.addPollutionLayer();
 
     this.map.createPane("place-names");
-    //this.map.getPane("place-names").style.zIndex = 451;
+    this.map.getPane("place-names").style.zIndex = 451;
     this.addPlaceNamesLayer();
 
     this.map.createPane("zones");
