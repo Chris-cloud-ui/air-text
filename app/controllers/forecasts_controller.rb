@@ -92,9 +92,13 @@ class ForecastsController < ApplicationController
   end
 
   def date
-    return Date.parse(params.fetch("date")) if params[:date].present?
+    return Date.today unless params[:date].present?
 
-    Date.today
+    parsed_date = Date.parse(params[:date])
+
+    allowed_range = Date.today..(Date.today + 2)
+
+    allowed_range.cover?(parsed_date) ? parsed_date : Date.today
   rescue ArgumentError
     Date.today # default to today
   end
