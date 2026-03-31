@@ -224,7 +224,7 @@ export default class MapController extends Controller {
   addPollutionLayer() {
     this.layers.pollution = this.pollutionLayer(
       this.settings.pollutant,
-      this.settings.date
+      this.dateSelectorTarget.value      // this.settings.date
     );
     this.map.addLayer(this.layers.pollution);
   }
