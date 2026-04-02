@@ -9,9 +9,9 @@ class CercSubscriberApiClient
       request("find-subscriber", :get, query)
     end
 
-    def send_verification_code(medium:, verification_code:, email: nil, phone: nil)
+    def send_verification_code(mode:, verification_code:, email: nil, phone: nil)
       query = {
-        medium: medium,
+        mode: mode,
         verificationCode: verification_code,
         expiryString: "15 minutes",
         email: email,
