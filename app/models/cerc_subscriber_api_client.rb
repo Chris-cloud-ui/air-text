@@ -12,7 +12,7 @@ class CercSubscriberApiClient
     def send_verification_code(mode:, verification_code:, email: nil, phone: nil)
       puts "send_verification_code"
       query = {
-        mode: mode,
+        medium: mode,
         verificationCode: verification_code,
         expiryString: "15 minutes",
         email: email,
