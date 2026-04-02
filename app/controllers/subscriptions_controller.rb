@@ -94,12 +94,12 @@ class SubscriptionsController < ApplicationController
     code = VerificationCode.generate(target).code
 
     # Send a verification code to the user
-    #CercSubscriberApiClient.send_verification_code(
-    #  verification_code: code,
-    #  medium: medium,
-    #  email: (target if medium == "email"),
-    #  phone: (target if medium != "email")
-    #)
+    CercSubscriberApiClient.send_verification_code(
+      verification_code: code,
+      mode: mode,
+      email: (target if mode == "email"),
+      phone: (target if mode != "email")
+    )
 
     # For testing purposes, print the code to the console
     puts "Verification code: #{code}"
