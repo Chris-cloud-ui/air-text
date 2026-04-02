@@ -71,16 +71,16 @@ class SubscriptionsController < ApplicationController
   end
 
   def resend_verification_code
-    medium = params[:medium]
-    send_verification_code(medium)
+    mode = params[:mode]
+    send_verification_code(mode)
 
     render json: {status: "success"}
   end
 
   private
 
-  def send_verification_code(medium)
-    case medium
+  def send_verification_code(mode)
+    case mode
     when "email"
       target = @form.email
     when "sms"
@@ -88,7 +88,7 @@ class SubscriptionsController < ApplicationController
     when "voice"
       target = @form.voice_number
     else
-      raise "Invalid medium"
+      raise "Invalid mode"
     end
 
     code = VerificationCode.generate(target).code
