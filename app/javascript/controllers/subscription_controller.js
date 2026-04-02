@@ -169,10 +169,10 @@ export default class SubscriptionController extends Controller {
 
   setCheckboxState(zone_name, state) {
     const checkbox = document.querySelector(`input[value="${zone_name}"]`);
-    if (checkbox.checked !== state) {
-      checkbox.checked = state;
-      checkbox.dispatchEvent(new Event("change"));
-    }
+    //if (checkbox.checked !== state) {
+    checkbox.checked = state;
+    checkbox.dispatchEvent(new Event("change"));
+    //}
   }
 
   tag(zoneName) {
