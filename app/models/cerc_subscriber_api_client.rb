@@ -10,6 +10,7 @@ class CercSubscriberApiClient
     end
 
     def send_verification_code(mode:, verification_code:, email: nil, phone: nil)
+      puts "send_verification_code"
       query = {
         mode: mode,
         verificationCode: verification_code,
@@ -51,12 +52,17 @@ class CercSubscriberApiClient
     private
 
     def request(endpoint, method, query = {}, body = nil)
+      puts "request"
       base_url = ENV.fetch("CERC_SUBSCRIBER_API_HOST_URL")
+      puts base_url
       headers = {"x-api-key" => ENV.fetch("CERC_SUBSCRIBER_API_KEY")}
-
+      
       if method == :post
+        puts "post"
         HTTParty.post("#{base_url}/#{endpoint}", headers: headers, query: query.compact, body: body)
+        puts "post end"
       else
+        puts "get"
         HTTParty.get("#{base_url}/#{endpoint}", headers: headers, query: query.compact)
       end
     end
