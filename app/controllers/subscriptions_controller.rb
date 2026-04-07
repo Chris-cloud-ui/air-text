@@ -42,6 +42,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def show
+    Rails.logger.info "show"
+    Rails.logger.info "--- PARAMS RECEIVED: #{params.inspect} ---"
     session[:subscription_form] = nil if params[:reset]
     load_step
 
@@ -51,7 +53,7 @@ class SubscriptionsController < ApplicationController
 
     # Switch back to the current step
     @form.current_step = step
-
+    Rails.logger.info "show varif"
     case step
     when :email_verification
       send_verification_code("email")
@@ -71,6 +73,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def resend_verification_code
+    Rails.logger.info "resend"
+    Rails.logger.info "--- PARAMS RECEIVED: #{params.inspect} ---"
     mode = params[:mode]
     send_verification_code(mode)
 
@@ -80,6 +84,7 @@ class SubscriptionsController < ApplicationController
   private
 
   def send_verification_code(mode)
+    Rails.logger.info "send_verification_code"
     case mode
     when "email"
       target = @form.email
@@ -92,7 +97,7 @@ class SubscriptionsController < ApplicationController
     end
 
     code = VerificationCode.generate(target).code
-
+    Rails.logger.info "CercSubscriberApiClient"
     # Send a verification code to the user
     CercSubscriberApiClient.send_verification_code(
       verification_code: code,
