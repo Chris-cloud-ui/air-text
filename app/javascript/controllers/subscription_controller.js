@@ -34,10 +34,10 @@ export default class SubscriptionController extends Controller {
   }
 
   resendVerification() {
-    const mode = this.resendVerificationButtonTarget.dataset.medium;
+    const mode = this.resendVerificationButtonTarget.dataset.mode;
     this.resendVerificationButtonTarget.textContent =
       "resend the code – sending...";
-    fetch(`/resend_verification_code?medium=${mode}`).then((response) => {
+    fetch(`/resend_verification_code?mode=${mode}`).then((response) => {
       if (response.ok) {
         this.resendVerificationButtonTarget.textContent =
           "resend the code – sent successfully";
