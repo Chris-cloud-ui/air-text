@@ -94,7 +94,7 @@ class SubscriptionsController < ApplicationController
     # Send a verification code to the user
     CercSubscriberApiClient.send_verification_code(
       verification_code: code,
-      medium: mode,
+      mode: mode,
       email: (target if mode == "email"),
       phone: (target if mode != "email")
     )
