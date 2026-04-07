@@ -14,11 +14,15 @@ Rails.application.config.content_security_policy do |policy|
   policy.script_src :self, :https
   policy.worker_src :self, :blob
 
-  policy.style_src :self, :https
 
   # allow styling for the Turbo progress bar
-  policy.style_src("'sha256-WAyOw4V+FqDc35lQPyRADLBWbuNK8ahvYEaQIYF1+Ps='", :self, :https)
-
+  policy.style_src(
+    :self, 
+    :https, 
+    "'sha256-WAyOw4V+FqDc35lQPyRADLBWbuNK8ahvYEaQIYF1+Ps='", # Original (Progress Bar)
+    "'sha256-daVKBAJY5hWkpg6dLYbu3DkS1MyZ5EFmKVmk9h8WtxM='"  # The new one from your error
+  )
+  
   # If you are using webpack-dev-server then specify webpack-dev-server host
   # policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
 
@@ -28,11 +32,6 @@ Rails.application.config.content_security_policy do |policy|
   
 end
 
-# If you are using UJS then enable automatic nonce generation
-Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
-
-# Set the nonce only to specific directives
-Rails.application.config.content_security_policy_nonce_directives = %w(script-src)
 
 # Report CSP violations to a specified URI
 # For further information see the following documentation:
