@@ -178,17 +178,37 @@ class SubscriptionForm
     ].compact
   end
 
+  
   def create_subscriptions
+    subscriberid=""
+    
+
     zones.compact.each do |zone|
       mediums.each do |medium|
-        create_subscription(zone, medium)
+        if subscriberid==""
+          response = CercSubscriberApiClient.find_subscriber(
+            email: email,
+            phone: sms_number || voice_number
+          )
+          if response.blank
+            create_subscription(zone, medium, nil)
+          else
+            subscriberid=response["subscriberId"]
+            create_subscription(zone, medium, subscriberid)
+          end
+        else
+          create_subscription(zone, medium, subscriberid)
+        end
+        
+        
+          
       end
     end
   end
 
-  def create_subscription(zone, medium)
+  def create_subscription(zone, medium,subscriber_id)
     CercSubscriberApiClient.create_subscription(
-      # subscriber_id: subscriber_id,
+      subscriber_id: subscriber_id,
       zone: zone,
       medium: medium,
       phone: (sms_number if medium == "sms") || (voice_number if medium == "voice"),
