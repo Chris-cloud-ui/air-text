@@ -33,7 +33,7 @@ class CercSubscriberApiClient
         mode: medium,
         phone: phone,
         email: email,
-        ampm: ampm,
+        time: ampm,
         subscriberDetails: subscriber_details
       }
 
