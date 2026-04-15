@@ -66,6 +66,10 @@ class SubscriptionsController < ApplicationController
   def update
     load_step
     session[:subscription_form] = @form.attributes
+
+    if step == :wrap_up && @form.valid?
+      create_subscription unless session[:subscription_created]
+    end
     render_wizard @form
   end
 
@@ -78,6 +82,23 @@ class SubscriptionsController < ApplicationController
 
   private
 
+
+  def create_subscription
+    client = CercSubscriberApiClient.new
+
+    client.create_subscription(
+      zone: @form.zone,
+      medium: @form.medium,
+      ampm: @form.ampm,
+      subscriber_id: @form.subscriber_id,
+      phone: @form.phone,
+      email: @form.email,
+      subscriber_details: @form.subscriber_details
+    )
+
+    session[:subscription_created] = true
+  end
+  
   def send_verification_code(mode)
     case mode
     when "email"
