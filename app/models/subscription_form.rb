@@ -194,15 +194,17 @@ class SubscriptionForm
             email: email,
             phone: sms_number || voice_number
           )
+
+          parsed = response.parsed_response
           puts "response"
-          puts response
-          if response.parsed_response.nil? || response.parsed_response.empty?
+          puts parsed
+          if parsed.nil? || parsed.empty?
             puts "empty"
             create_subscription(zone, medium, nil)
           else
             puts "found"
-            puts response["subscriberId"]
-            subscriberid=response["subscriberId"]
+            puts parsed["subscriberId"]
+            subscriberid=parsed["subscriberId"]
             create_subscription(zone, medium, subscriberid)
           end
         else
