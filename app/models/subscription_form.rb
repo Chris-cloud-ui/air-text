@@ -191,7 +191,7 @@ class SubscriptionForm
             phone: sms_number || voice_number
           )
           if response.parsed_response.nil? || response.parsed_response.empty?
-            create_subscription(zone, medium)
+            create_subscription(zone, medium, nil)
           else
             subscriberid=response["subscriberId"]
             create_subscription(zone, medium, subscriberid)
@@ -210,7 +210,7 @@ class SubscriptionForm
     params = {
       zone: zone,
       medium: medium,
-      ampm: time
+      time: ampm
     }
   
     # Only include contact info if subscriber_id is nil
