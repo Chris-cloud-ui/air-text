@@ -191,7 +191,7 @@ class SubscriptionForm
             phone: sms_number || voice_number
           )
           if response.parsed_response.nil? || response.parsed_response.empty?
-            create_subscription(zone, medium, nil)
+            create_subscription(zone, medium)
           else
             subscriberid=response["subscriberId"]
             create_subscription(zone, medium, subscriberid)
@@ -232,19 +232,5 @@ class SubscriptionForm
     CercSubscriberApiClient.create_subscription(params)
   end
   
-  def create_subscription(zone, medium,subscriber_id)
-    CercSubscriberApiClient.create_subscription(
-      subscriber_id: subscriber_id,
-      zone: zone,
-      medium: medium,
-      phone: (sms_number if medium == "sms") || (voice_number if medium == "voice"),
-      email: (email if medium == "email"),
-      ampm: time,
-      subscriber_details: {
-        "whySignup" => reason,
-        "howHeard" => source,
-        "allowContact" => research
-      }
-    )
-  end
+
 end
