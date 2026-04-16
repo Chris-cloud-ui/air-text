@@ -1,9 +1,9 @@
 class CercSubscriberApiClient
   class << self
-    def find_subscriber(email:, phone:)
+    def find_subscriber(email:, phone_number:)
       query = {
         email: email,
-        phone: phone
+        phone_number: phone_number
       }
 
       request("find-subscriber", :get, query)
