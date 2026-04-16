@@ -194,11 +194,9 @@ class SubscriptionForm
             email: email,
             phone: sms_number || voice_number
           )
-          puts response.class
-          puts response.parsed_response.class
-          puts response.parsed_response.inspect
-          parsed = response.parsed_response
-          puts "parsed response"
+          
+          parsed = JSON.parse(response.parsed_response)
+          puts "JSON parsed response"
           puts parsed
           if parsed.nil? || parsed.empty?
             puts "empty"
