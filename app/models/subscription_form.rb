@@ -210,7 +210,7 @@ class SubscriptionForm
     params = {
       zone: zone,
       medium: medium,
-      time: ampm
+      ampm: time
     }
   
     # Only include contact info if subscriber_id is nil
