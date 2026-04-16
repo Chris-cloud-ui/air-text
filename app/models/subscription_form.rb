@@ -205,7 +205,33 @@ class SubscriptionForm
       end
     end
   end
-
+  
+  def create_subscription(zone, medium, subscriber_id)
+    params = {
+      zone: zone,
+      medium: medium,
+      ampm: time
+    }
+  
+    # Only include contact info if subscriber_id is nil
+    if subscriber_id.nil?
+      params[:phone] =
+        (sms_number if medium == "sms") ||
+        (voice_number if medium == "voice")
+  
+      params[:email] = email if medium == "email"
+      params[:subscriber_details] = {
+        "whySignup" => reason,
+        "howHeard" => source,
+        "allowContact" => research
+      }
+    else
+      params[:subscriber_id] = subscriber_id
+    end
+  
+    CercSubscriberApiClient.create_subscription(params)
+  end
+  
   def create_subscription(zone, medium,subscriber_id)
     CercSubscriberApiClient.create_subscription(
       subscriber_id: subscriber_id,
