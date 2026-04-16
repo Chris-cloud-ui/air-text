@@ -180,23 +180,33 @@ class SubscriptionForm
 
   
   def create_subscriptions
-    subscriberid=""
-    
 
+    subscriberid = nil
+    
     zones.compact.each do |zone|
       mediums.each do |medium|
-        if subscriberid==""
+        if subscriberid.nil?
+          puts "find_subscriber"
+          puts email
+          puts sms_number
+          puts voice_number
           response = CercSubscriberApiClient.find_subscriber(
             email: email,
             phone: sms_number || voice_number
           )
+          puts "response"
+          puts response
           if response.parsed_response.nil? || response.parsed_response.empty?
+            puts "empty"
             create_subscription(zone, medium, nil)
           else
+            puts "found"
+            puts response["subscriberId"]
             subscriberid=response["subscriberId"]
             create_subscription(zone, medium, subscriberid)
           end
         else
+          puts "continue"
           create_subscription(zone, medium, subscriberid)
         end
         
