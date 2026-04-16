@@ -190,7 +190,7 @@ class SubscriptionForm
             email: email,
             phone: sms_number || voice_number
           )
-          if response.blank
+          if response.parsed_response.nil? || response.parsed_response.empty?
             create_subscription(zone, medium, nil)
           else
             subscriberid=response["subscriberId"]
