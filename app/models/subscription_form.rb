@@ -194,18 +194,17 @@ class SubscriptionForm
             email: email,
             phonenumber: sms_number || voice_number
           )
-          
-          parsed = JSON.parse(response.parsed_response)
-          puts "JSON parsed response"
-          puts parsed
-          if parsed.nil? || parsed.empty?
-            puts "empty"
-            create_subscription(zone, medium, nil)
-          else
-            puts "found"
-            puts parsed["subscriberId"]
+          if response.code == 200
+            puts "found existing subscriber"
+            parsed = JSON.parse(response.parsed_response)
+            puts parsed
             subscriberid=parsed["subscriberId"]
             create_subscription(zone, medium, subscriberid)
+          elsif response.code == 404
+            puts "No match"
+            create_subscription(zone, medium, nil)
+          else
+            puts "Error: TODO "
           end
         else
           puts "continue"
