@@ -33,11 +33,13 @@ class CercSubscriberApiClient
         mode: medium,
         phone: phone,
         email: email,
-        time: ampm,
-        subscriberDetails: subscriber_details
+        time: ampm
       }
 
-      request("subscriptions", :post, query)
+      body = {}
+      body[:subscriberDetails] = subscriber_details if subscriber_details
+
+      request("subscriptions", :post, query, body)
     end
 
     def delete_subscription(subscriber_id, subscription_id)
