@@ -184,10 +184,10 @@ class SubscriptionForm
     subscriberid = nil
     
     zones.compact.each do |zone|
-      put zone
+      puts zone
       mediums.each do |medium|
-        put medium
-        put receive_email
+        puts medium
+        puts receive_email
         puts email
         puts receive_sms
         puts sms_number
