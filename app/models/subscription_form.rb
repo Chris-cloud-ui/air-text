@@ -185,14 +185,15 @@ class SubscriptionForm
     
     zones.compact.each do |zone|
       puts zone
+      puts receive_email
+      puts email
+      puts receive_sms
+      puts sms_number
+      puts receive_voice
+      puts voice_number
       mediums.each do |medium|
         puts medium
-        puts receive_email
-        puts email
-        puts receive_sms
-        puts sms_number
-        puts receive_voice
-        puts voice_number
+        
         if subscriberid.nil?
           puts "find_subscriber"
 
