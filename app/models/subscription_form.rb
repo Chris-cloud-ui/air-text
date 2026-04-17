@@ -184,12 +184,18 @@ class SubscriptionForm
     subscriberid = nil
     
     zones.compact.each do |zone|
+      put zone
       mediums.each do |medium|
+        put medium
+        put receive_email
+        puts email
+        puts receive_sms
+        puts sms_number
+        puts receive_voice
+        puts voice_number
         if subscriberid.nil?
           puts "find_subscriber"
-          puts email
-          puts sms_number
-          puts voice_number
+
           response = CercSubscriberApiClient.find_subscriber(
             email: email,
             phonenumber: sms_number || voice_number
