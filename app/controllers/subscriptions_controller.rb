@@ -57,7 +57,7 @@ class SubscriptionsController < ApplicationController
     when :sms_number_verification
       send_verification_code("sms")
     when :voice_number_verification
-      send_verification_code("voice")
+      send_verification_code("voicemail")
     end
 
     render_wizard
