@@ -85,14 +85,14 @@ class SubscriptionsController < ApplicationController
   
   def send_verification_code(mode)
     case mode
-    when "email"
-      target = @form.email
-    when "sms"
-      target = @form.sms_number
-    when "voice"
-      target = @form.voice_number
-    else
-      raise "Invalid mode"
+      when "email"
+        target = @form.email
+      when "sms"
+        target = @form.sms_number
+      when "voicemail"
+        target = @form.voice_number
+      else
+        raise "Invalid mode"
     end
 
     code = VerificationCode.generate(target).code
