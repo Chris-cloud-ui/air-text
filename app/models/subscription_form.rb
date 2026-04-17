@@ -231,7 +231,7 @@ class SubscriptionForm
       ampm: time,
       phone: (sms_number if medium == "sms") || (voice_number if medium == "voice"),
       email: (email if medium == "email")
-    }
+    }.compact
     body = nil
     
     if subscriber_id.nil?
