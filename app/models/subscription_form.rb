@@ -199,6 +199,7 @@ class SubscriptionForm
             parsed = response.parsed_response
             puts parsed
             subscriberid=parsed["subscriberId"]
+            puts subscriberid
             create_subscription(zone, medium, subscriberid)
           elsif response.code == 404
             puts "No match"
@@ -233,7 +234,7 @@ class SubscriptionForm
       "allowContact" => research
     }
   else
-    args[:subscriber_details] => subscriber_id,
+    args[:subscriberId] = subscriber_id,
   end
 
   CercSubscriberApiClient.create_subscription(**args)
