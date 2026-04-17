@@ -61,11 +61,11 @@ class CercSubscriberApiClient
       
       if method == :post
         puts "post"
-        HTTParty.post("#{base_url}/#{endpoint}", headers: headers, body: payload.compact.to_json)
+        HTTParty.post("#{base_url}/#{endpoint}", headers: headers, query: query.compact, body: body&.to_json)
         puts "post end"
       else
         puts "get"
-        HTTParty.get("#{base_url}/#{endpoint}", headers: headers, query: payload.compact)
+        HTTParty.get("#{base_url}/#{endpoint}", headers: headers, query: query.compact)
       end
     end
   end
