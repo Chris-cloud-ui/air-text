@@ -172,9 +172,9 @@ class SubscriptionForm
 
   def mediums
     [
-      ("email" if receive_email == 1),
-      ("sms" if receive_sms == 1),
-      ("voicemail" if receive_voice == 1)
+      ("email" if receive_email.to_i == 1),
+      ("sms" if receive_sms.to_i == 1),
+      ("voicemail" if receive_voice.to_i == 1)
     ].compact
   end
 
