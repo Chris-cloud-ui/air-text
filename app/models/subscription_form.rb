@@ -182,7 +182,7 @@ class SubscriptionForm
   def create_subscriptions
 
     subscriberid = nil
-    
+    puts "create_subscriptions"
     zones.compact.each do |zone|
       puts zone
       puts receive_email
@@ -226,6 +226,9 @@ class SubscriptionForm
   end
 
   def create_subscription(zone, medium, subscriber_id)
+    puts "create_subscription"
+    puts zone
+    puts medium
     CercSubscriberApiClient.create_subscription(
       zone: zone,
       medium: medium,
