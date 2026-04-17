@@ -188,6 +188,11 @@ class SubscriptionForm
       puts receive_email
       puts email
       puts receive_sms
+      if receive_sms.is_a?(String)
+        puts "receive_sms is a string"
+      elsif receive_sms.is_a?(Numeric)
+        puts "receive_sms is a number"
+      end
       puts sms_number
       puts receive_voice
       puts voice_number
