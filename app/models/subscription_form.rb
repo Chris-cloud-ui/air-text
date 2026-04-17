@@ -41,7 +41,7 @@ class SubscriptionForm
   attribute :zones
 
   validate :at_least_one_zone_selected?, if: -> { after_step?("zone_selection") }
-  validate :no_more_than_5_zones?, if: -> { after_step?("zone_selection") }
+  validate :no_more_than_2_zones?, if: -> { after_step?("zone_selection") }
 
   # time_selection
   attribute :time
@@ -151,8 +151,8 @@ class SubscriptionForm
     errors.add(:zones, "You must select at least one zone to receive alerts for") unless zones&.count&.positive?
   end
 
-  def no_more_than_5_zones?
-    errors.add(:zones, "You can select a maximum of 5 zones") if zones&.count&.> 5
+  def no_more_than_2_zones?
+    errors.add(:zones, "You can select a maximum of 2 zones") if zones&.count&.> 2
   end
 
   def receiving?(method)
