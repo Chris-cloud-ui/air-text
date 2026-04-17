@@ -234,7 +234,7 @@ class SubscriptionForm
         "allowContact" => research
       }
     else
-      args[:subscriberId] = subscriber_id
+      args[:subscriber_id] = subscriber_id
     end
   
     CercSubscriberApiClient.create_subscription(**args)
