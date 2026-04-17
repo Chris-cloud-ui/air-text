@@ -55,15 +55,15 @@ class CercSubscriberApiClient
       puts "request"
       base_url = ENV.fetch("CERC_SUBSCRIBER_API_HOST_URL")
       puts base_url
-      headers = {"x-api-key" => ENV.fetch("CERC_SUBSCRIBER_API_KEY")}
+      headers = {"x-api-key" => ENV.fetch("CERC_SUBSCRIBER_API_KEY"), "Content-Type" => "application/json"}
       
       if method == :post
         puts "post"
-        HTTParty.post("#{base_url}/#{endpoint}", headers: headers, query: query.compact, body: body)
+        HTTParty.post("#{base_url}/#{endpoint}", headers: headers, body: payload.compact.to_json)
         puts "post end"
       else
         puts "get"
-        HTTParty.get("#{base_url}/#{endpoint}", headers: headers, query: query.compact)
+        HTTParty.get("#{base_url}/#{endpoint}", headers: headers, query: payload.compact)
       end
     end
   end
