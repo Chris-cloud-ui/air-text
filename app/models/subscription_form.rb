@@ -196,7 +196,7 @@ class SubscriptionForm
           )
           if response.code == 200
             puts "found existing subscriber"
-            parsed = JSON.parse(response.parsed_response)
+            parsed = response.parsed_response
             puts parsed
             subscriberid=parsed["subscriberId"]
             create_subscription(zone, medium, subscriberid)
