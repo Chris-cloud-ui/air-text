@@ -192,7 +192,7 @@ class SubscriptionForm
           puts voice_number
           response = CercSubscriberApiClient.find_subscriber(
             email: email,
-            phonenumber: sms_number || voice_number
+            phone_number: sms_number || voice_number
           )
           
           parsed = JSON.parse(response.parsed_response)
