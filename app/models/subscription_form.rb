@@ -191,7 +191,7 @@ class SubscriptionForm
           puts sms_number
           puts voice_number
           response = CercSubscriberApiClient.find_subscriber(
-            email: email
+            email: email,
             phonenumber: sms_number || voice_number
           )
           
