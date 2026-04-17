@@ -225,28 +225,23 @@ class SubscriptionForm
   end
 
   def create_subscription(zone, medium, subscriber_id)
-    query = {
+    CercSubscriberApiClient.create_subscription(
       zone: zone,
       medium: medium,
       ampm: time,
+      subscriber_id: subscriber_id,
       phone: (sms_number if medium == "sms") || (voice_number if medium == "voice"),
-      email: (email if medium == "email")
-    }.compact
-    body = nil
-    
-    if subscriber_id.nil?
-      body = {
-        subscriberDetails: {
-          "whySignup" => reason,
-          "howHeard" => source,
-          "allowContact" => research
-        }
-      }
-    else
-      query[:subscriber_id] = subscriber_id
-    end
-  
-    CercSubscriberApiClient.create_subscription(**args)
+      email: (email if medium == "email"),
+      subscriber_details: (
+        if subscriber_id.nil?
+          {
+            "whySignup" => reason,
+            "howHeard" => source,
+            "allowContact" => research
+          }
+        end
+      )
+    )
   end
 
 
