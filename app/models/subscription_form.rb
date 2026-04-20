@@ -213,7 +213,7 @@ class SubscriptionForm
           else
             params[:phonenumber] = sms_number
           end
-          response = CercSubscriberApiClient.find_subscriber(**params)
+          response = CercSubscriberApiClient.find_subscriber(params)
           
           if response.code == 200
             puts "found existing subscriber"
