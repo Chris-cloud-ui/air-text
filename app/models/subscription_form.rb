@@ -201,11 +201,20 @@ class SubscriptionForm
         
         if subscriberid.nil?
           puts "find_subscriber"
+          params = {}
+          params[:email] = email unless email.to_s.strip.empty?
 
-          response = CercSubscriberApiClient.find_subscriber(
-            email: email,
-            phonenumber: sms_number || voice_number
-          )
+          if sms_number.to_s.strip.empty?
+            if voice_number.to_s.strip.empty?  
+              puts "No phone number"
+            else
+              params[:phonenumber] = voice_number
+            end
+          else
+            params[:phonenumber] = sms_number
+          end
+          response = CercSubscriberApiClient.find_subscriber(**params)
+          
           if response.code == 200
             puts "found existing subscriber"
             parsed = response.parsed_response
