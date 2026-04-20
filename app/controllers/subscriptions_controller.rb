@@ -133,7 +133,7 @@ class SubscriptionsController < ApplicationController
       :current_step,
       :receive_email,
       :receive_sms,
-      :receive_voice,
+      :receive_voicemail,
       :email,
       :sms_number,
       :voice_number,
