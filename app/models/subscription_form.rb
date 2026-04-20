@@ -212,6 +212,8 @@ class SubscriptionForm
             puts parsed
             subscriberid=parsed["subscriberId"]
             puts subscriberid
+            # TODO: check existing subscriptions, if the total number of subscriptions is over 2 report back, check for duplicate subscriptions
+            
             create_subscription(zone, medium, subscriberid)
           elsif response.code == 404
             puts "No match"
