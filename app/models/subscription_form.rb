@@ -16,7 +16,7 @@ class SubscriptionForm
   validate :one_contact_method_present?, if: -> { after_step?("contact_details") }
   validates :email, presence: {message: "You must provide an email address"}, if: -> { receiving?(:email) && after_step?("contact_details") }
   validates :sms_number, presence: {message: "You must provide a mobile number to receive texts"}, if: -> { receiving?(:sms) && after_step?("contact_details") }
-  validates :voice_number, presence: {message: "You must provide a phone number to receive voicemail"}, if: -> { receiving?(:voice) && after_step?("contact_details") }
+  validates :voice_number, presence: {message: "You must provide a phone number to receive voicemail"}, if: -> { receiving?(:voicemail) && after_step?("contact_details") }
 
   # contact_verification
   attribute :verification_code_email
@@ -128,7 +128,7 @@ class SubscriptionForm
   end
 
   def one_contact_method_present?
-    errors.add(:base, "You must select at least one contact method") unless receiving?(:email) || receiving?(:sms) || receiving?(:voice)
+    errors.add(:base, "You must select at least one contact method") unless receiving?(:email) || receiving?(:sms) || receiving?(:voicemail)
   end
 
   def verification_enabled?
@@ -249,7 +249,7 @@ class SubscriptionForm
       medium: medium,
       ampm: time,
       subscriber_id: subscriber_id,
-      phone: (sms_number if medium == "sms") || (voice_number if medium == "voice"),
+      phone: (sms_number if medium == "sms") || (voice_number if medium == "voicemail"),
       email: (email if medium == "email"),
       subscriber_details: (
         if subscriber_id.nil?
