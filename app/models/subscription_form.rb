@@ -8,7 +8,7 @@ class SubscriptionForm
   # contact_details
   attribute :receive_email
   attribute :receive_sms
-  attribute :receive_voice
+  attribute :receive_voicemail
   attribute :email
   attribute :sms_number
   attribute :voice_number
@@ -174,7 +174,7 @@ class SubscriptionForm
     [
       ("email" if receive_email.to_i == 1),
       ("sms" if receive_sms.to_i == 1),
-      ("voicemail" if receive_voice.to_i == 1)
+      ("voicemail" if receive_voicemail.to_i == 1)
     ].compact
   end
 
@@ -194,7 +194,7 @@ class SubscriptionForm
         puts "receive_sms is a number"
       end
       puts sms_number
-      puts receive_voice
+      puts receive_voicemail
       puts voice_number
       mediums.each do |medium|
         puts medium
