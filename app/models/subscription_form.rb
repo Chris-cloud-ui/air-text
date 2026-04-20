@@ -191,7 +191,7 @@ class SubscriptionForm
       # subscriber_id: subscriber_id,
       zone: zone,
       medium: medium,
-      phone: (sms_number if medium == "sms") || (voice_number if medium == "voice"),
+      phone: (sms_number if medium == "sms") || (voice_number if medium == "voicemail"),
       email: (email if medium == "email"),
       ampm: time,
       subscriber_details: {
