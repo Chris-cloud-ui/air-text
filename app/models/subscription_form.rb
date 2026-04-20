@@ -213,7 +213,15 @@ class SubscriptionForm
             subscriberid=parsed["subscriberId"]
             puts subscriberid
             # TODO: check existing subscriptions, if the total number of subscriptions is over 2 report back, check for duplicate subscriptions
-            
+            subscriptionresponse=get_subscriptions(subscriberid)
+            if subscriptionresponse.code == 200
+              # There are existing subscriptions
+              parsedsubscription = subscriptionresponse.parsed_response
+              subscriptions = parsedsubscription["subscriptions"] || []
+              count = subscriptions.length
+
+              puts count
+            end
             create_subscription(zone, medium, subscriberid)
           elsif response.code == 404
             puts "No match"
